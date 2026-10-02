@@ -144,14 +144,13 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
 
       {/* Main Upload Dropzone (Premium Large) */}
       {!parsedData && activeTab === 'upload' && (
-        <div
+        <label
           onDragOver={(e) => {
             e.preventDefault();
             setIsDragging(true);
           }}
           onDragLeave={() => setIsDragging(false)}
           onDrop={handleDrop}
-          onClick={() => !isProcessing && fileInputRef.current?.click()}
           className={`relative p-12 sm:p-20 min-h-[380px] flex flex-col items-center justify-center border-2 border-dashed rounded-[2rem] text-center cursor-pointer transition-all duration-300 ${
             isDragging
               ? 'border-[#D4AF37] bg-[#FCF9EE]/80 scale-[1.02] shadow-xl'
@@ -159,11 +158,17 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
           } ${isProcessing ? 'pointer-events-none' : ''}`}
         >
           <input
-            ref={fileInputRef}
             type="file"
-            accept=".pdf,application/pdf,.txt,text/plain"
-            className="hidden"
-            onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0])}
+            accept="application/pdf,text/plain,.pdf,.txt"
+            disabled={isProcessing}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            onChange={(e) => {
+              if (e.target.files?.[0]) {
+                handleFileUpload(e.target.files[0]);
+              }
+              // Reset to allow selecting same file again if it failed
+              e.target.value = '';
+            }}
           />
 
           {isProcessing ? (
@@ -189,7 +194,7 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
                   Upload Resume
                 </h3>
                 <p className="text-sm text-gray-500 font-medium">
-                  Drag & drop your PDF or TXT file here
+                  Tap here to upload your PDF
                 </p>
               </div>
               <div className="pt-4">
@@ -200,7 +205,7 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
               </div>
             </div>
           )}
-        </div>
+        </label>
       )}
 
       {/* Paste Text Tab */}
