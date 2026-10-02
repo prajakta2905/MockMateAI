@@ -151,12 +151,24 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
           }}
           onDragLeave={() => setIsDragging(false)}
           onDrop={handleDrop}
+          onClick={() => !isProcessing && fileInputRef.current?.click()}
           className={`relative p-12 sm:p-20 min-h-[380px] flex flex-col items-center justify-center border-2 border-dashed rounded-[2rem] text-center cursor-pointer transition-all duration-300 ${
             isDragging
               ? 'border-[#D4AF37] bg-[#FCF9EE]/80 scale-[1.02] shadow-xl'
               : 'border-[#EAE6DF] bg-white hover:border-[#D4AF37] hover:bg-[#FCF9EE]/30 shadow-sm hover:shadow-md'
           } ${isProcessing ? 'pointer-events-none' : ''}`}
         >
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf,application/pdf,.txt,text/plain"
+            className="hidden"
+            onChange={(e) => {
+              if (e.target.files?.[0]) handleFileUpload(e.target.files[0]);
+              e.target.value = '';
+            }}
+          />
+
           {isProcessing ? (
             <div className="space-y-5 py-6">
               <div className="w-20 h-20 mx-auto rounded-full bg-white shadow-md border border-[#EEDD9E] flex items-center justify-center">
@@ -180,35 +192,13 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
                   Upload Resume
                 </h3>
                 <p className="text-sm text-gray-500 font-medium">
-                  Tap here to upload your PDF
+                  Drag & drop your PDF or TXT file here
                 </p>
               </div>
-              <div className="pt-6 flex flex-col items-center gap-4 w-full">
-                {/* Completely Native, Visible Input - Guaranteed to work */}
-                <div className="w-full max-w-sm p-4 bg-[#FCF9EE] border-2 border-[#EEDD9E] rounded-2xl shadow-sm text-left">
-                  <p className="text-xs font-bold text-[#855E15] uppercase tracking-wider mb-3 text-center">
-                    Upload Your Resume
-                  </p>
-                  <input
-                    type="file"
-                    disabled={isProcessing}
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        handleFileUpload(file);
-                      }
-                    }}
-                    className="block w-full text-sm text-gray-500 cursor-pointer
-                      file:mr-4 file:py-2.5 file:px-6
-                      file:rounded-xl file:border-0
-                      file:text-sm file:font-bold
-                      file:bg-[#D4AF37] file:text-white
-                      hover:file:bg-[#8C6314] hover:file:cursor-pointer transition-all"
-                  />
-                </div>
-                
-                <span className="text-[11px] text-gray-400 mt-2 max-w-xs mx-auto">
-                  Note: A native file picker is being used for maximum mobile compatibility.
+              <div className="pt-4">
+                <span className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-[#D4AF37] to-[#8C6314] rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                  <FileText className="w-4 h-4 text-white" />
+                  Select File
                 </span>
               </div>
             </div>
