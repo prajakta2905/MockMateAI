@@ -161,7 +161,7 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
           <input
             ref={fileInputRef}
             type="file"
-            accept=".pdf,.txt"
+            accept=".pdf,application/pdf,.txt,text/plain"
             className="hidden"
             onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0])}
           />
