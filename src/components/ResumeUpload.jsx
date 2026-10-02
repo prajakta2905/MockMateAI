@@ -193,10 +193,10 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
                     type="file"
                     disabled={isProcessing}
                     onChange={(e) => {
-                      if (e.target.files?.[0]) {
-                        handleFileUpload(e.target.files[0]);
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        handleFileUpload(file);
                       }
-                      e.target.value = '';
                     }}
                     className="block w-full text-sm text-gray-500 cursor-pointer
                       file:mr-4 file:py-2.5 file:px-6
