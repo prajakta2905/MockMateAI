@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Mic, ShieldCheck, RotateCcw, History, User, LogOut, Settings } from 'lucide-react';
+import { Sparkles, Mic, ShieldCheck, RotateCcw, History, User, LogOut } from 'lucide-react';
 import HistoryModal from './HistoryModal';
 import AuthModal from './AuthModal';
-import ApiKeyModal from './ApiKeyModal';
 import { getCurrentUser, onAuthStateChange, signOutUser } from '../services/authService';
 
 export default function Navbar({ onReset, currentStep, currentUser: propUser, onOpenAuth: propOpenAuth }) {
@@ -10,7 +9,6 @@ export default function Navbar({ onReset, currentStep, currentUser: propUser, on
   const [internalAuthOpen, setInternalAuthOpen] = useState(false);
   const [internalAuthMode, setInternalAuthMode] = useState('login'); // 'login' | 'signup'
   const [internalUser, setInternalUser] = useState(null);
-  const [isApiKeyOpen, setIsApiKeyOpen] = useState(false);
 
   const currentUser = propUser !== undefined ? propUser : internalUser;
 
@@ -178,14 +176,6 @@ export default function Navbar({ onReset, currentStep, currentUser: propUser, on
                 <span className="hidden md:inline">Start New Round</span>
               </button>
             )}
-            {/* Settings / API Key Button */}
-            <button
-              onClick={() => setIsApiKeyOpen(true)}
-              className="p-1.5 text-gray-500 hover:text-[#855E15] bg-white hover:bg-[#FCF9EE] border border-[#EAE6DF] hover:border-[#D4AF37] rounded-xl transition-all shadow-2xs flex items-center justify-center cursor-pointer ml-1"
-              title="Configure API Keys"
-            >
-              <Settings className="w-4 h-4" />
-            </button>
           </div>
         </div>
       </header>
@@ -206,12 +196,6 @@ export default function Navbar({ onReset, currentStep, currentUser: propUser, on
           onAuthSuccess={(u) => setInternalUser(u)}
         />
       )}
-
-      {/* API Key Config Modal */}
-      <ApiKeyModal
-        isOpen={isApiKeyOpen}
-        onClose={() => setIsApiKeyOpen(false)}
-      />
     </>
   );
 }
