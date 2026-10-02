@@ -58,6 +58,18 @@ class SpeechService {
     };
   }
 
+  warmup() {
+    if (typeof window === 'undefined') return;
+    if (this.audioContext && this.audioContext.state === 'suspended') {
+      this.audioContext.resume().catch(() => {});
+    }
+    if (this.synthesis && !this.synthesis.pending) {
+      const utterance = new SpeechSynthesisUtterance('');
+      utterance.volume = 0;
+      this.synthesis.speak(utterance);
+    }
+  }
+
   bindUserInteractionResume() {
     if (typeof window === 'undefined') return;
     const resumeAudio = () => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sparkles, Clock, Mic, Code2, Users, Shuffle, ArrowRight, UserCheck, Volume2 } from 'lucide-react';
 import { cleanCandidateName } from '../services/gemini';
+import { speechService } from '../services/speechService';
 
 export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
   const [interviewType, setInterviewType] = useState('mixed'); // 'technical' | 'behavioral' | 'mixed'
@@ -36,6 +37,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
   ];
 
   const handleStart = () => {
+    speechService.warmup(); // Initialize TTS engine synchronously on user click to bypass mobile autoplay blocking
     const selectedPersona = personas.find(p => p.id === interviewerPersona) || personas[0];
     onSetupComplete({
       type: interviewType,
