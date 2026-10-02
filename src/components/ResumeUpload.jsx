@@ -144,7 +144,7 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
 
       {/* Main Upload Dropzone (Premium Large) */}
       {!parsedData && activeTab === 'upload' && (
-        <label
+        <div
           onDragOver={(e) => {
             e.preventDefault();
             setIsDragging(true);
@@ -157,20 +157,6 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
               : 'border-[#EAE6DF] bg-white hover:border-[#D4AF37] hover:bg-[#FCF9EE]/30 shadow-sm hover:shadow-md'
           } ${isProcessing ? 'pointer-events-none' : ''}`}
         >
-          <input
-            type="file"
-            accept="application/pdf,text/plain,.pdf,.txt"
-            disabled={isProcessing}
-            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-            onChange={(e) => {
-              if (e.target.files?.[0]) {
-                handleFileUpload(e.target.files[0]);
-              }
-              // Reset to allow selecting same file again if it failed
-              e.target.value = '';
-            }}
-          />
-
           {isProcessing ? (
             <div className="space-y-5 py-6">
               <div className="w-20 h-20 mx-auto rounded-full bg-white shadow-md border border-[#EEDD9E] flex items-center justify-center">
@@ -197,15 +183,37 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
                   Tap here to upload your PDF
                 </p>
               </div>
-              <div className="pt-4">
-                <span className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-[#D4AF37] to-[#8C6314] rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
-                  <FileText className="w-4 h-4 text-white" />
-                  Select File
+              <div className="pt-6 flex flex-col items-center gap-4 w-full">
+                {/* Completely Native, Visible Input - Guaranteed to work */}
+                <div className="w-full max-w-sm p-4 bg-[#FCF9EE] border-2 border-[#EEDD9E] rounded-2xl shadow-sm text-left">
+                  <p className="text-xs font-bold text-[#855E15] uppercase tracking-wider mb-3 text-center">
+                    Upload Your Resume
+                  </p>
+                  <input
+                    type="file"
+                    disabled={isProcessing}
+                    onChange={(e) => {
+                      if (e.target.files?.[0]) {
+                        handleFileUpload(e.target.files[0]);
+                      }
+                      e.target.value = '';
+                    }}
+                    className="block w-full text-sm text-gray-500 cursor-pointer
+                      file:mr-4 file:py-2.5 file:px-6
+                      file:rounded-xl file:border-0
+                      file:text-sm file:font-bold
+                      file:bg-[#D4AF37] file:text-white
+                      hover:file:bg-[#8C6314] hover:file:cursor-pointer transition-all"
+                  />
+                </div>
+                
+                <span className="text-[11px] text-gray-400 mt-2 max-w-xs mx-auto">
+                  Note: A native file picker is being used for maximum mobile compatibility.
                 </span>
               </div>
             </div>
           )}
-        </label>
+        </div>
       )}
 
       {/* Paste Text Tab */}
