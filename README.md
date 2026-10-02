@@ -12,7 +12,8 @@
     <img src="https://img.shields.io/badge/Vite-6.0-purple?style=for-the-badge&logo=vite" alt="Vite" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
     <img src="https://img.shields.io/badge/Supabase-Auth_&_DB-3ECF8E?style=for-the-badge&logo=supabase" alt="Supabase" />
-    <img src="https://img.shields.io/badge/Google_Gemini-AI_Coaching-8E75B2?style=for-the-badge&logo=googlebard" alt="Gemini AI" />
+    <img src="https://img.shields.io/badge/Google_Gemini-AI-8E75B2?style=for-the-badge&logo=googlebard" alt="Gemini AI" />
+    <img src="https://img.shields.io/badge/Groq_%26_xAI-Live_Interview-F55036?style=for-the-badge&logo=lightning" alt="Groq/Grok" />
   </p>
 </div>
 
@@ -39,7 +40,7 @@ This project uses a modern, high-performance web development stack:
 | **Styling & UI** | Tailwind CSS, Framer Motion (Animations), Lucide React (Icons) |
 | **Data Visualization** | Recharts |
 | **Backend & Auth** | Supabase (Database, Storage, Authentication) |
-| **AI Integration** | Google Gemini API (Natural Language Processing & Coaching) |
+| **AI Integration** | Google Gemini API (Coaching), Groq LPU / xAI Grok (Live Voice Interviewer) |
 | **Document Processing**| PDF.js (Client-Side Document Parsing) |
 
 ---
@@ -74,6 +75,9 @@ APP_ORIGIN=http://127.0.0.1:5173
 
 # Google Gemini API
 GEMINI_API_KEY=your_gemini_api_key_here
+
+# Groq / xAI API (For Live Ultra-Fast Interviewer)
+VITE_GROK_API_KEY=gsk_your_groq_api_key_or_xai_key
 ```
 
 ### 3. Run the App
@@ -98,12 +102,12 @@ To enable user accounts, history tracking, and private resume storage, you must 
 
 ---
 
-## 🧠 AI Coaching Setup (Optional)
+## 🧠 AI Coaching & Live Interviewer Setup (Optional)
 
-Unlock the full potential of MockMate AI by connecting Google Gemini.
+Unlock the full potential of MockMate AI by connecting **Google Gemini** for coaching and **Groq (LPU)** or **xAI (Grok)** for ultra-low latency conversational follow-ups.
 
-1. Get a **Gemini API Key** from [Google AI Studio](https://aistudio.google.com/app/apikey).
-2. Add the key to your `.env.local` as `GEMINI_API_KEY`.
+1. **Gemini API Key**: Get it from [Google AI Studio](https://aistudio.google.com/app/apikey). Add as `GEMINI_API_KEY`.
+2. **Groq API Key**: For blazing-fast voice interview speed, get a key from [GroqCloud](https://console.groq.com/). Add as `VITE_GROK_API_KEY`. (Alternatively, use an xAI API key).
 3. Restart your dev server.
 
 *(Note: The built-in practice functionality is completely usable even without an API key!)*
