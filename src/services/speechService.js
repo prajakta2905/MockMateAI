@@ -136,6 +136,8 @@ class SpeechService {
     }
 
     try {
+      const isMobile = typeof navigator !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
+      
       const recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
@@ -467,6 +469,27 @@ class SpeechService {
     try {
       if (typeof navigator === 'undefined' || !navigator.mediaDevices?.getUserMedia) {
         return false;
+      }
+
+      const isMobile = typeof navigator !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        // On mobile, bypass AudioContext/getUserMedia to prevent hardware microphone conflicts
+        // with SpeechRecognition. Android Chrome will crash the mic if both try to use it.
+        // We simulate a lively volume for the visualizer while the AI is listening.
+        if (this.volumeAnimationFrame) {
+          cancelAnimationFrame(this.volumeAnimationFrame);
+        }
+        const simulateVolume = () => {
+          if (onVolumeUpdate) {
+            onVolumeUpdate(this.isListening ? Math.floor(Math.random() * 25 + 5) : 0);
+          }
+          this.volumeAnimationFrame = requestAnimationFrame(() => {
+            setTimeout(simulateVolume, 100);
+          });
+        };
+        simulateVolume();
+        this.permissionDenied = false;
+        return true;
       }
 
       // Stop previous check loop if running
