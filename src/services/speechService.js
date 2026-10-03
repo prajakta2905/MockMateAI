@@ -140,7 +140,7 @@ class SpeechService {
       
       const recognition = new SpeechRecognition();
       recognition.continuous = true;
-      recognition.interimResults = true;
+      recognition.interimResults = !isMobile;
       recognition.lang = 'en-US';
       recognition.maxAlternatives = 1;
 
@@ -212,14 +212,25 @@ class SpeechService {
       recognition.onend = () => {
         this.isListening = false;
 
-        // Auto-restart if we should still be listening and are not currently speaking or blocked
         if (this.shouldBeListening && !this.isSpeaking && !this.permissionDenied) {
           clearTimeout(this.restartTimeout);
+          
+          // Exponential backoff if restarting too frequently (e.g. Android crash loops)
+          const now = Date.now();
+          if (this.lastRestartTime && (now - this.lastRestartTime < 2000)) {
+             this.restartAttempts = (this.restartAttempts || 0) + 1;
+          } else {
+             this.restartAttempts = 0;
+          }
+          this.lastRestartTime = now;
+          
+          const delay = Math.min(800 * Math.pow(1.5, this.restartAttempts), 5000);
+
           this.restartTimeout = setTimeout(() => {
             if (this.shouldBeListening && !this.isSpeaking && !this.permissionDenied) {
               this._restartRecognition();
             }
-          }, 800);
+          }, delay);
         } else {
           if (this.onListeningChangeCallback) {
             this.onListeningChangeCallback(false);
@@ -471,23 +482,11 @@ class SpeechService {
         return false;
       }
 
-      // 1. Request microphone to explicitly guarantee permission is granted
-      let stream = null;
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-      } catch (err) {
-        console.warn('Microphone permission denied during setup:', err);
-        this.permissionDenied = true;
-        return false;
-      }
-
       const isMobile = typeof navigator !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
       
       if (isMobile) {
-        // On mobile, immediately stop the tracks to release hardware lock.
-        // Android cannot share the mic between AudioContext and SpeechRecognition.
-        stream.getTracks().forEach(t => t.stop());
-        
+        // Mobile Android Chrome cannot share the microphone between AudioContext and SpeechRecognition.
+        // We completely bypass getUserMedia here. SpeechRecognition will handle the permission prompt.
         if (this.volumeAnimationFrame) {
           cancelAnimationFrame(this.volumeAnimationFrame);
         }
@@ -504,9 +503,21 @@ class SpeechService {
         return true;
       }
 
-      // For Desktop: keep the stream and setup AudioContext
+      // For Desktop: Use actual AudioContext and getUserMedia with full constraints
+      if (this.volumeAnimationFrame) {
+        cancelAnimationFrame(this.volumeAnimationFrame);
+        this.volumeAnimationFrame = null;
+      }
+
       if (!this.mediaStream || !this.mediaStream.active) {
-        this.mediaStream = stream;
+        this.mediaStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true
+          },
+          video: false
+        });
       }
 
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
