@@ -209,9 +209,6 @@ class SpeechService {
 
       recognition.onend = () => {
         this.isListening = false;
-        if (this.onListeningChangeCallback) {
-          this.onListeningChangeCallback(false);
-        }
 
         // Auto-restart if we should still be listening and are not currently speaking or blocked
         if (this.shouldBeListening && !this.isSpeaking && !this.permissionDenied) {
@@ -222,6 +219,9 @@ class SpeechService {
             }
           }, 150);
         } else {
+          if (this.onListeningChangeCallback) {
+            this.onListeningChangeCallback(false);
+          }
           if (this.onEndCallback) {
             this.onEndCallback();
           }
