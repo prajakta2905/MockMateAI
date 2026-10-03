@@ -60,7 +60,8 @@ export default function ProcessingScreen({ interviewData, onReportReady }) {
   }, [interviewData, onReportReady]);
 
   return (
-    <div className="max-w-xl mx-auto space-y-4 py-4 animate-in fade-in duration-300">
+    <div className="w-full max-w-xl mx-auto px-4 sm:px-6 py-4 flex flex-col justify-center flex-1 space-y-6 animate-in fade-in duration-300">
+      <div className="w-full space-y-5">
       {/* Header */}
       <div className="text-center space-y-1">
         <div className="w-12 h-12 rounded-2xl bg-[#FCF9EE] border border-[#EEDD9E] flex items-center justify-center mx-auto shadow-sm">
@@ -135,6 +136,7 @@ export default function ProcessingScreen({ interviewData, onReportReady }) {
       <div className="w-48 mx-auto h-1 bg-gray-100 rounded-full overflow-hidden">
         <div className="h-full bg-gradient-to-r from-[#D4AF37] to-[#E2B857] animate-pulse w-3/4 rounded-full"></div>
       </div>
+    </div>
     </div>
   );
 }
