@@ -402,11 +402,11 @@ export default function InterviewScreen({
       </div>
 
       {/* Main Horizontal 2-Column Arena */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch flex-1 min-h-0 overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch flex-1 min-h-0">
         {/* Left Column (5 Cols): AI Voice Orb & Persona Pod */}
-        <div className="lg:col-span-5 luxury-card p-2 lg:p-5 rounded-2xl lg:rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative overflow-hidden bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm h-[110px] lg:h-full shrink-0 lg:shrink">
+        <div className="lg:col-span-5 luxury-card p-2 lg:p-5 rounded-2xl lg:rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm h-[110px] lg:h-full shrink-0 lg:shrink">
           {/* Subtle Top Accent */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] via-[#E2B857] to-[#A87D1B]"></div>
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] via-[#E2B857] to-[#A87D1B] rounded-t-2xl lg:rounded-t-3xl overflow-hidden"></div>
 
           {/* Dynamic Follow-Up Tag */}
           <div className="w-full flex justify-between items-center">
@@ -426,7 +426,7 @@ export default function InterviewScreen({
           </div>
 
           {/* Golden Orb Centerpiece */}
-          <div className="my-auto transform scale-[0.6] lg:scale-100 origin-center flex items-center justify-center">
+          <div className="flex-1 flex items-center justify-center -mt-12 -mb-12 lg:mt-0 lg:mb-0 transform scale-[0.45] lg:scale-100 origin-center pointer-events-none">
             <AudioVisualizer
               status={interviewerStatus}
               volume={micVolume}
