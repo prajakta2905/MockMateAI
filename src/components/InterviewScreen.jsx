@@ -374,9 +374,9 @@ export default function InterviewScreen({
           </div>
           <div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="text-[10px] sm:text-xs font-bold text-gray-900 line-clamp-1 max-w-[80px] sm:max-w-none">{candidateName}</span>
+              <span className="text-[10px] sm:text-xs font-bold text-gray-900 truncate max-w-[130px] sm:max-w-[200px]">{candidateName}</span>
               <span className="text-[8px] sm:text-[10px] text-gray-400 hidden sm:inline">•</span>
-              <span className="text-[10px] sm:text-xs text-gray-600 font-medium line-clamp-1 max-w-[80px] sm:max-w-none hidden sm:inline">{resume.targetRole}</span>
+              <span className="text-[10px] sm:text-xs text-gray-600 font-medium truncate max-w-[100px] sm:max-w-none hidden sm:inline">{resume.targetRole}</span>
               <span className="text-[8px] sm:text-[10px] bg-[#FCF9EE] text-[#855E15] border border-[#EEDD9E] px-1.5 py-0.5 rounded-md font-semibold hidden sm:inline">
                 {setup.type.toUpperCase()}
               </span>
@@ -402,7 +402,7 @@ export default function InterviewScreen({
       </div>
 
       {/* Main Horizontal 2-Column Arena */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch flex-1 min-h-0">
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-3 items-stretch flex-1 min-h-0">
         {/* Left Column (5 Cols): AI Voice Orb & Persona Pod */}
         <div className="lg:col-span-5 luxury-card p-2 lg:p-5 rounded-2xl lg:rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm h-[110px] lg:h-full shrink-0 lg:shrink">
           {/* Subtle Top Accent */}
@@ -450,7 +450,7 @@ export default function InterviewScreen({
         </div>
 
         {/* Right Column (7 Cols): Question Card, Live Answer & Control Toolbar */}
-        <div className="lg:col-span-7 flex flex-col gap-3 h-full min-h-0 overflow-hidden">
+        <div className="lg:col-span-7 flex flex-col gap-3 flex-1 lg:flex-auto h-full min-h-0 overflow-hidden">
           {/* Current Question Card */}
           <div className="luxury-card p-2.5 lg:p-4 rounded-2xl lg:rounded-3xl border border-[#EAE6DF] space-y-1 bg-white shadow-xs shrink-0 max-h-[30%] overflow-y-auto">
             <div className="flex items-center justify-between">
