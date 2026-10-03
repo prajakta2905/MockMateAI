@@ -364,7 +364,7 @@ export default function InterviewScreen({
   };
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col gap-4 animate-in fade-in duration-300">
+    <div className="max-w-7xl mx-auto flex flex-col gap-3 h-[calc(100dvh-5.5rem)] animate-in fade-in duration-300 pb-2">
       {/* Top Compact Navigation Session Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 bg-white rounded-2xl border border-[#EAE6DF] shadow-xs">
         {/* Left: Candidate Info & Category */}
@@ -402,9 +402,9 @@ export default function InterviewScreen({
       </div>
 
       {/* Main Horizontal 2-Column Arena */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch flex-1 min-h-0 overflow-hidden">
         {/* Left Column (5 Cols): AI Voice Orb & Persona Pod */}
-        <div className="lg:col-span-5 luxury-card p-5 rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative overflow-hidden bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm min-h-[380px] lg:min-h-[460px]">
+        <div className="lg:col-span-5 luxury-card p-4 lg:p-5 rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative overflow-hidden bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm h-full min-h-[220px] lg:min-h-0 shrink-0 lg:shrink">
           {/* Subtle Top Accent */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] via-[#E2B857] to-[#A87D1B]"></div>
 
@@ -450,9 +450,9 @@ export default function InterviewScreen({
         </div>
 
         {/* Right Column (7 Cols): Question Card, Live Answer & Control Toolbar */}
-        <div className="lg:col-span-7 flex flex-col justify-between gap-3">
+        <div className="lg:col-span-7 flex flex-col gap-3 h-full min-h-0 overflow-hidden">
           {/* Current Question Card */}
-          <div className="luxury-card p-5 rounded-3xl border border-[#EAE6DF] space-y-2 bg-white shadow-xs">
+          <div className="luxury-card p-3 lg:p-4 rounded-3xl border border-[#EAE6DF] space-y-1.5 bg-white shadow-xs shrink-0 max-h-[35%] overflow-y-auto">
             <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase font-black tracking-widest text-[#A87D1B] bg-[#FCF9EE] px-2.5 py-1 rounded-md border border-[#EEDD9E]">
                 {currentQuestion?.category || 'Question'}
@@ -472,7 +472,7 @@ export default function InterviewScreen({
           </div>
 
           {/* Live Spoken Answer Display & Text Area */}
-          <div className="luxury-card p-4 rounded-3xl border border-[#EAE6DF] flex-1 flex flex-col justify-between bg-white shadow-xs space-y-2 min-h-[170px]">
+          <div className="luxury-card p-3 lg:p-4 rounded-3xl border border-[#EAE6DF] flex-1 flex flex-col bg-white shadow-xs space-y-2 min-h-0">
             <div className="flex items-center justify-between text-xs font-bold text-gray-600">
               <span className="flex items-center gap-1.5 text-emerald-700">
                 <Mic className="w-3.5 h-3.5" /> Your Spoken or Typed Answer:
@@ -526,7 +526,7 @@ export default function InterviewScreen({
               </div>
             )}
 
-            <div className="relative flex-1">
+            <div className="relative flex-1 min-h-0">
               <textarea
                 value={candidateAnswerText + (interimSpeech ? ` ${interimSpeech}` : '')}
                 onChange={(e) => {
@@ -553,7 +553,7 @@ export default function InterviewScreen({
           </div>
 
           {/* Bottom Integrated Voice Control Toolbar */}
-          <div className="p-3.5 bg-white rounded-3xl border border-[#EAE6DF] shadow-md flex flex-wrap items-center justify-center 2xl:justify-between gap-3">
+          <div className="p-2 lg:p-3 bg-white rounded-3xl border border-[#EAE6DF] shadow-md flex flex-wrap items-center justify-center 2xl:justify-between gap-2 shrink-0">
             {/* Left Controls: Pause, Skip */}
             <div className="flex items-center justify-center gap-1.5 flex-1 min-w-[200px]">
               <button
