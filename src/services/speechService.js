@@ -471,11 +471,23 @@ class SpeechService {
         return false;
       }
 
+      // 1. Request microphone to explicitly guarantee permission is granted
+      let stream = null;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+      } catch (err) {
+        console.warn('Microphone permission denied during setup:', err);
+        this.permissionDenied = true;
+        return false;
+      }
+
       const isMobile = typeof navigator !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
+      
       if (isMobile) {
-        // On mobile, bypass AudioContext/getUserMedia to prevent hardware microphone conflicts
-        // with SpeechRecognition. Android Chrome will crash the mic if both try to use it.
-        // We simulate a lively volume for the visualizer while the AI is listening.
+        // On mobile, immediately stop the tracks to release hardware lock.
+        // Android cannot share the mic between AudioContext and SpeechRecognition.
+        stream.getTracks().forEach(t => t.stop());
+        
         if (this.volumeAnimationFrame) {
           cancelAnimationFrame(this.volumeAnimationFrame);
         }
@@ -492,22 +504,9 @@ class SpeechService {
         return true;
       }
 
-      // Stop previous check loop if running
-      if (this.volumeAnimationFrame) {
-        cancelAnimationFrame(this.volumeAnimationFrame);
-        this.volumeAnimationFrame = null;
-      }
-
-      // Request or reuse active microphone stream
+      // For Desktop: keep the stream and setup AudioContext
       if (!this.mediaStream || !this.mediaStream.active) {
-        this.mediaStream = await navigator.mediaDevices.getUserMedia({
-          audio: {
-            echoCancellation: true,
-            noiseSuppression: true,
-            autoGainControl: true
-          },
-          video: false
-        });
+        this.mediaStream = stream;
       }
 
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
