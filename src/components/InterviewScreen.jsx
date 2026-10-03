@@ -366,18 +366,18 @@ export default function InterviewScreen({
   return (
     <div className="max-w-7xl mx-auto flex flex-col gap-3 h-[calc(100dvh-5.5rem)] animate-in fade-in duration-300 pb-2">
       {/* Top Compact Navigation Session Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 lg:px-5 lg:py-3 bg-white rounded-2xl border border-[#EAE6DF] shadow-xs shrink-0">
+      <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 px-2 py-1.5 sm:px-3 sm:py-2 lg:px-5 lg:py-3 bg-white rounded-xl lg:rounded-2xl border border-[#EAE6DF] shadow-xs shrink-0">
         {/* Left: Candidate Info & Category */}
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-[#FCF9EE] border border-[#EEDD9E] flex items-center justify-center text-[#A87D1B] font-black text-xs">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-[#FCF9EE] border border-[#EEDD9E] flex items-center justify-center text-[#A87D1B] font-black text-[10px] sm:text-xs">
             Q{currentQuestionIndex + 1}
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-gray-900">{candidateName}</span>
-              <span className="text-[10px] text-gray-400">•</span>
-              <span className="text-xs text-gray-600 font-medium">{resume.targetRole}</span>
-              <span className="text-[10px] bg-[#FCF9EE] text-[#855E15] border border-[#EEDD9E] px-2 py-0.5 rounded-md font-semibold">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-xs font-bold text-gray-900 line-clamp-1 max-w-[80px] sm:max-w-none">{candidateName}</span>
+              <span className="text-[8px] sm:text-[10px] text-gray-400 hidden sm:inline">•</span>
+              <span className="text-[10px] sm:text-xs text-gray-600 font-medium line-clamp-1 max-w-[80px] sm:max-w-none hidden sm:inline">{resume.targetRole}</span>
+              <span className="text-[8px] sm:text-[10px] bg-[#FCF9EE] text-[#855E15] border border-[#EEDD9E] px-1.5 py-0.5 rounded-md font-semibold hidden sm:inline">
                 {setup.type.toUpperCase()}
               </span>
             </div>

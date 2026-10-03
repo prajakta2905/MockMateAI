@@ -349,20 +349,16 @@ class SpeechService {
       return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.rate = 1.02;
-    utterance.pitch = 1.0;
-
-    if (this.selectedVoice) {
-      utterance.voice = this.selectedVoice;
-    }
-
+    const chunks = cleanText.match(/[^.?!]+[.?!]+|\s*[^.?!]+/g).filter(c => c.trim());
+    let currentChunkIndex = 0;
     let finished = false;
+
+    if (onStart) onStart();
+
     const finishSpeech = () => {
       if (finished) return;
       finished = true;
       clearTimeout(this.speechWatchdog);
-      clearInterval(this.speechHeartbeat);
       this.activeUtterance = null;
       if (typeof window !== 'undefined') window.__mockmateUtterance = null;
 
@@ -372,54 +368,64 @@ class SpeechService {
       }, 250);
     };
 
-    utterance.onstart = () => {
-      this.isSpeaking = true;
-      this.stopListening();
-      if (onStart) onStart();
-    };
+    const playNextChunk = () => {
+      if (!this.isSpeaking || finished) return;
+      
+      if (currentChunkIndex >= chunks.length) {
+        finishSpeech();
+        return;
+      }
 
-    utterance.onend = () => {
-      finishSpeech();
-    };
+      const utterance = new SpeechSynthesisUtterance(chunks[currentChunkIndex]);
+      utterance.rate = 1.02;
+      utterance.pitch = 1.0;
 
-    utterance.onerror = (err) => {
-      console.warn('Speech synthesis event error:', err);
-      finishSpeech();
-    };
+      if (this.selectedVoice) {
+        utterance.voice = this.selectedVoice;
+      }
 
-    // Keep active reference to prevent Chromium garbage collection from eating onend
-    this.activeUtterance = utterance;
-    if (typeof window !== 'undefined') {
-      window.__mockmateUtterance = utterance;
-    }
+      utterance.onend = () => {
+        currentChunkIndex++;
+        playNextChunk();
+      };
 
-    // Safety watchdog: In case onend never triggers in browser
-    const words = cleanText.split(/\s+/).length;
-    const expectedTimeMs = Math.max(3000, (words / 2.2) * 1000 + 2500);
-    this.speechWatchdog = setTimeout(() => {
-      if (this.isSpeaking && !finished) {
-        console.warn('Speech watchdog timer expired; releasing mic.');
-        try {
-          this.synthesis.cancel();
-        } catch (_) {}
+      utterance.onerror = (err) => {
+        console.warn('Speech synthesis chunk error:', err);
+        currentChunkIndex++;
+        playNextChunk();
+      };
+
+      // Keep active reference to prevent Chromium garbage collection from eating onend
+      this.activeUtterance = utterance;
+      if (typeof window !== 'undefined') {
+        window.__mockmateUtterance = utterance;
+      }
+
+      // Safety watchdog: In case onend never triggers in browser for this chunk
+      clearTimeout(this.speechWatchdog);
+      const words = chunks[currentChunkIndex].split(/\s+/).length;
+      const expectedTimeMs = Math.max(3000, (words / 2.2) * 1000 + 2500);
+      
+      this.speechWatchdog = setTimeout(() => {
+        if (this.isSpeaking && !finished) {
+          console.warn('Speech watchdog timer expired for chunk; skipping to next.');
+          try {
+            this.synthesis.cancel();
+          } catch (_) {}
+          currentChunkIndex++;
+          playNextChunk();
+        }
+      }, expectedTimeMs);
+
+      try {
+        this.synthesis.speak(utterance);
+      } catch (e) {
+        console.error('TTS speak invocation error:', e);
         finishSpeech();
       }
-    }, expectedTimeMs);
+    };
 
-    // Chrome 15s freeze fix: pulse resume
-    this.speechHeartbeat = setInterval(() => {
-      if (this.isSpeaking && this.synthesis.speaking) {
-        this.synthesis.pause();
-        this.synthesis.resume();
-      }
-    }, 3500);
-
-    try {
-      this.synthesis.speak(utterance);
-    } catch (e) {
-      console.error('TTS speak invocation error:', e);
-      finishSpeech();
-    }
+    playNextChunk();
   }
 
   /**
@@ -427,7 +433,6 @@ class SpeechService {
    */
   stopSpeaking() {
     clearTimeout(this.speechWatchdog);
-    clearInterval(this.speechHeartbeat);
     if (this.synthesis) {
       try {
         this.synthesis.cancel();
