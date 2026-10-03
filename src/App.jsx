@@ -125,7 +125,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAF7] text-[#1E2229] flex flex-col justify-between font-sans selection:bg-[#EEDD9E] selection:text-[#583C15] overflow-x-hidden">
+    <div className="h-[100dvh] bg-[#FAFAF7] text-[#1E2229] flex flex-col justify-between font-sans selection:bg-[#EEDD9E] selection:text-[#583C15] overflow-hidden">
       {/* Top Navbar */}
       <Navbar
         onReset={handleReset}
@@ -135,9 +135,9 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className={`flex-1 w-full ${currentStep === 'home'
+      <main className={`flex-1 w-full overflow-y-auto ${currentStep === 'home'
         ? 'px-3 sm:px-6 lg:px-8'
-        : 'max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col justify-center'
+        : 'max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-4 flex flex-col justify-center'
         }`}>
         {currentStep === 'home' && (
           <HeroLanding

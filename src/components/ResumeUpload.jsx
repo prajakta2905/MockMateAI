@@ -277,74 +277,74 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
 
       {/* Extracted Profile Preview Card (Compact Single-Screen View) */}
       {parsedData && (
-        <div className="luxury-card p-5 sm:p-6 rounded-3xl space-y-4 border border-[#EEDD9E]/60 bg-white relative overflow-hidden">
+        <div className="luxury-card p-3 sm:p-4 rounded-[1.5rem] space-y-2.5 border border-[#EEDD9E]/60 bg-white relative overflow-hidden">
           {/* Status Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+          <div className="flex items-center justify-between pb-2 border-b border-gray-100">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
-                <CheckCircle2 className="w-4 h-4" />
+              <div className="w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
+                <CheckCircle2 className="w-3.5 h-3.5" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-gray-900">
-                  Profile Extracted & Ready
+                <h3 className="text-[13px] font-bold text-gray-900 leading-tight">
+                  Profile Ready
                 </h3>
-                <p className="text-[10px] text-gray-500">Review or adjust your details before setup</p>
+                <p className="text-[9px] text-gray-500 leading-tight">Review before setup</p>
               </div>
             </div>
 
             <button
               onClick={() => setParsedData(null)}
-              className="text-xs font-semibold text-gray-600 hover:text-gray-900 flex items-center gap-1 px-2.5 py-1 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
+              className="text-[10px] font-semibold text-gray-600 hover:text-gray-900 flex items-center gap-1 px-2 py-0.5 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
             >
-              <RefreshCw className="w-3 h-3" /> Change
+              <RefreshCw className="w-2.5 h-2.5" /> Change
             </button>
           </div>
 
           {/* Editable Details Bar */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 bg-[#FCF9EE]/50 rounded-2xl border border-[#EEDD9E]/50">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2 bg-[#FCF9EE]/50 rounded-xl border border-[#EEDD9E]/50">
             <div className="space-y-0.5">
-              <label className="text-[9px] uppercase font-bold text-gray-500 flex items-center gap-1">
+              <label className="text-[8px] uppercase font-bold text-gray-500 flex items-center gap-1">
                 <User className="w-2.5 h-2.5 text-[#A87D1B]" /> Name
               </label>
               <input
                 type="text"
                 value={parsedData.name || ''}
                 onChange={(e) => setParsedData({ ...parsedData, name: e.target.value })}
-                className="w-full px-2.5 py-1 text-xs font-bold text-gray-900 bg-white border border-[#EAE6DF] rounded-lg focus:border-[#D4AF37] outline-none"
+                className="w-full px-2 py-0.5 text-[11px] font-bold text-gray-900 bg-white border border-[#EAE6DF] rounded-md focus:border-[#D4AF37] outline-none"
               />
             </div>
 
             <div className="space-y-0.5">
-              <label className="text-[9px] uppercase font-bold text-gray-500 flex items-center gap-1">
-                <Briefcase className="w-2.5 h-2.5 text-[#A87D1B]" /> Target Role
+              <label className="text-[8px] uppercase font-bold text-gray-500 flex items-center gap-1">
+                <Briefcase className="w-2.5 h-2.5 text-[#A87D1B]" /> Role
               </label>
               <input
                 type="text"
                 value={parsedData.targetRole || ''}
                 onChange={(e) => setParsedData({ ...parsedData, targetRole: e.target.value })}
-                className="w-full px-2.5 py-1 text-xs font-bold text-gray-900 bg-white border border-[#EAE6DF] rounded-lg focus:border-[#D4AF37] outline-none"
+                className="w-full px-2 py-0.5 text-[11px] font-bold text-gray-900 bg-white border border-[#EAE6DF] rounded-md focus:border-[#D4AF37] outline-none"
               />
             </div>
 
             <div className="space-y-0.5">
-              <label className="text-[9px] uppercase font-bold text-gray-500 flex items-center gap-1">
-                <GraduationCap className="w-2.5 h-2.5 text-[#A87D1B]" /> Experience
+              <label className="text-[8px] uppercase font-bold text-gray-500 flex items-center gap-1">
+                <GraduationCap className="w-2.5 h-2.5 text-[#A87D1B]" /> Exp.
               </label>
               <input
                 type="text"
                 value={parsedData.experienceLevel || ''}
                 onChange={(e) => setParsedData({ ...parsedData, experienceLevel: e.target.value })}
-                className="w-full px-2.5 py-1 text-xs font-bold text-gray-900 bg-white border border-[#EAE6DF] rounded-lg focus:border-[#D4AF37] outline-none"
+                className="w-full px-2 py-0.5 text-[11px] font-bold text-gray-900 bg-white border border-[#EAE6DF] rounded-md focus:border-[#D4AF37] outline-none"
               />
             </div>
           </div>
 
           {/* Skills & Projects Horizontal Split */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {/* Skills */}
-            <div className="p-3 bg-gray-50 rounded-2xl border border-gray-200/70 space-y-1.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1">
-                <Cpu className="w-3 h-3 text-[#D4AF37]" /> Key Technical Skills
+            <div className="p-2 bg-gray-50 rounded-xl border border-gray-200/70 space-y-1">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1">
+                <Cpu className="w-2.5 h-2.5 text-[#D4AF37]" /> Key Tech Skills
               </span>
               <textarea
                 value={Object.entries(parsedData.skills || {}).flatMap(([_, list]) => 
@@ -356,18 +356,18 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
                     skills: { all: e.target.value.split(',').map(s => s.trim()).filter(Boolean) } 
                   });
                 }}
-                rows={3}
+                rows={2}
                 placeholder="React, Java, System Design..."
-                className="w-full p-2 text-[11px] font-medium text-gray-800 bg-white border border-[#EAE6DF] rounded-xl focus:border-[#D4AF37] outline-none resize-none shadow-2xs"
+                className="w-full p-1.5 text-[10px] font-medium text-gray-800 bg-white border border-[#EAE6DF] rounded-lg focus:border-[#D4AF37] outline-none resize-none shadow-2xs leading-tight"
               />
             </div>
 
             {/* Projects */}
-            <div className="p-3 bg-gray-50 rounded-2xl border border-gray-200/70 space-y-1.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1">
-                <Layers className="w-3 h-3 text-[#D4AF37]" /> Main Project for Interview
+            <div className="p-2 bg-gray-50 rounded-xl border border-gray-200/70 space-y-1">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1">
+                <Layers className="w-2.5 h-2.5 text-[#D4AF37]" /> Main Project
               </span>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <input
                   type="text"
                   value={parsedData.projects?.[0]?.name || ''}
@@ -378,7 +378,7 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
                     setParsedData({ ...parsedData, projects: newProjects });
                   }}
                   placeholder="Project Name (e.g. E-commerce API)"
-                  className="w-full px-2.5 py-1.5 text-[11px] font-bold text-gray-900 bg-white border border-[#EAE6DF] rounded-xl focus:border-[#D4AF37] outline-none shadow-2xs"
+                  className="w-full px-2 py-1 text-[10px] font-bold text-gray-900 bg-white border border-[#EAE6DF] rounded-lg focus:border-[#D4AF37] outline-none shadow-2xs"
                 />
                 <input
                   type="text"
@@ -390,19 +390,19 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
                     setParsedData({ ...parsedData, projects: newProjects });
                   }}
                   placeholder="Tech Stack (e.g. React, Node, AWS)"
-                  className="w-full px-2.5 py-1.5 text-[11px] text-gray-600 bg-white border border-[#EAE6DF] rounded-xl focus:border-[#D4AF37] outline-none shadow-2xs"
+                  className="w-full px-2 py-1 text-[10px] text-gray-600 bg-white border border-[#EAE6DF] rounded-lg focus:border-[#D4AF37] outline-none shadow-2xs"
                 />
               </div>
             </div>
           </div>
 
           {/* Action Row */}
-          <div className="pt-2 flex justify-end">
+          <div className="pt-1 flex justify-end">
             <button
               onClick={handleConfirmAndProceed}
-              className="px-5 py-2.5 text-xs font-bold text-white rounded-xl gold-gradient-btn flex items-center gap-1.5 cursor-pointer shadow-md"
+              className="px-4 py-2 text-[11px] font-bold text-white rounded-lg gold-gradient-btn flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
-              Proceed to Interview Setup <ArrowRight className="w-3.5 h-3.5" />
+              Setup Interview <ArrowRight className="w-3 h-3" />
             </button>
           </div>
         </div>

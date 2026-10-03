@@ -48,7 +48,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
   };
 
   return (
-    <div className="max-w-5xl mx-auto relative z-10 py-10 px-4">
+    <div className="w-full max-w-5xl mx-auto relative z-10 py-4 sm:py-8 px-4 h-full flex flex-col justify-center">
       {/* --- Premium Animated Background Elements --- */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[3rem] z-0">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#D4AF37]/15 rounded-full blur-[120px] animate-blob"></div>
@@ -62,7 +62,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
         <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-white/80 rounded-full animate-float shadow-[0_0_12px_rgba(255,255,255,0.9)]"></div>
       </div>
 
-      <div className="relative z-10 space-y-8 max-w-4xl mx-auto">
+      <div className="relative z-10 space-y-4 max-w-4xl mx-auto w-full">
 
       
       {/* Top Session Breadcrumb (Stagger 1) */}
@@ -90,10 +90,10 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
       </div>
 
       {/* 2-Column Split Horizontal Setup Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6 items-stretch">
         
         {/* Left Column: Format & Duration (Stagger 2) */}
-        <div className="animate-in slide-in-from-bottom-8 fade-in duration-700 delay-[150ms] ease-out fill-mode-both p-8 rounded-[2.5rem] border border-white/80 shadow-2xl shadow-gray-200/30 bg-white/70 backdrop-blur-2xl flex flex-col justify-between space-y-10 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-500">
+        <div className="animate-in slide-in-from-bottom-8 fade-in duration-700 delay-[150ms] ease-out fill-mode-both p-4 sm:p-8 rounded-3xl sm:rounded-[2.5rem] border border-white/80 shadow-2xl shadow-gray-200/30 bg-white/70 backdrop-blur-2xl flex flex-col justify-between space-y-5 sm:space-y-10 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-500">
           {/* Subtle bg glow */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#EEDD9E]/10 rounded-full blur-3xl pointer-events-none group-hover:bg-[#EEDD9E]/30 group-hover:scale-125 transition-all duration-1000"></div>
 
@@ -156,7 +156,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                     key={item.mins}
                     type="button"
                     onClick={() => setDuration(item.mins)}
-                    className={`group relative p-3 rounded-2xl text-center border transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-center min-h-[80px] ${
+                    className={`group relative p-3 rounded-2xl text-center border transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-center min-h-[60px] sm:min-h-[80px] ${
                       isSelected
                         ? 'bg-gradient-to-br from-[#FCF9EE] to-white border-[#D4AF37] shadow-[0_8px_25px_-5px_rgba(212,175,55,0.4)] -translate-y-1 ring-2 ring-[#D4AF37]/40 scale-[1.02]'
                         : 'bg-white/40 border-gray-100 hover:border-[#D4AF37]/60 hover:bg-white hover:shadow-[0_8px_20px_-5px_rgba(212,175,55,0.25)] hover:-translate-y-1 hover:scale-[1.02]'
@@ -175,7 +175,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
         </div>
 
         {/* Right Column: Persona & Mode (Stagger 3) */}
-        <div className="animate-in slide-in-from-bottom-8 fade-in duration-700 delay-[300ms] ease-out fill-mode-both p-8 rounded-[2.5rem] border border-white/80 shadow-2xl shadow-gray-200/30 bg-white/70 backdrop-blur-2xl flex flex-col justify-between space-y-10 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-500">
+        <div className="animate-in slide-in-from-bottom-8 fade-in duration-700 delay-[300ms] ease-out fill-mode-both p-4 sm:p-8 rounded-3xl sm:rounded-[2.5rem] border border-white/80 shadow-2xl shadow-gray-200/30 bg-white/70 backdrop-blur-2xl flex flex-col justify-between space-y-5 sm:space-y-10 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-500">
           {/* Subtle bg glow */}
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#FCF9EE]/40 rounded-full blur-3xl pointer-events-none group-hover:bg-[#FCF9EE]/70 group-hover:scale-125 transition-all duration-1000"></div>
 
@@ -193,7 +193,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                     key={p.id}
                     type="button"
                     onClick={() => setInterviewerPersona(p.id)}
-                    className={`group relative p-4 rounded-2xl border text-left transition-all duration-500 cursor-pointer overflow-hidden min-h-[90px] flex flex-col justify-center ${
+                    className={`group relative p-3 sm:p-4 rounded-2xl border text-left transition-all duration-500 cursor-pointer overflow-hidden min-h-[70px] sm:min-h-[90px] flex flex-col justify-center ${
                       isSelected
                         ? 'bg-gradient-to-br from-[#FCF9EE] to-white border-[#D4AF37] shadow-[0_8px_25px_-5px_rgba(212,175,55,0.4)] -translate-y-1 ring-2 ring-[#D4AF37]/40 scale-[1.02]'
                         : 'bg-white/40 border-gray-100 hover:border-[#D4AF37]/60 hover:bg-white hover:shadow-[0_8px_20px_-5px_rgba(212,175,55,0.25)] hover:-translate-y-1 hover:scale-[1.02]'
@@ -228,7 +228,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                     key={mode.id}
                     type="button"
                     onClick={() => setVoiceMode(mode.id)}
-                    className={`group relative p-3 rounded-2xl text-left border transition-all duration-500 cursor-pointer overflow-hidden min-h-[80px] flex flex-col justify-center ${
+                    className={`group relative p-3 rounded-2xl text-left border transition-all duration-500 cursor-pointer overflow-hidden min-h-[60px] sm:min-h-[80px] flex flex-col justify-center ${
                       isSelected
                         ? 'bg-gradient-to-br from-[#FCF9EE] to-white border-[#D4AF37] shadow-[0_8px_25px_-5px_rgba(212,175,55,0.4)] -translate-y-1 ring-2 ring-[#D4AF37]/40 scale-[1.02]'
                         : 'bg-white/40 border-gray-100 hover:border-[#D4AF37]/60 hover:bg-white hover:shadow-[0_8px_20px_-5px_rgba(212,175,55,0.25)] hover:-translate-y-1 hover:scale-[1.02]'
