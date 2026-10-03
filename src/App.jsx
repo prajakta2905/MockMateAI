@@ -202,16 +202,16 @@ export default function App() {
       </main>
 
       {/* Global Executive Footer */}
-      <footer className="border-t border-[#EAE6DF] bg-white/80 backdrop-blur-xs py-4 text-center text-xs text-gray-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-2 font-semibold text-gray-700">
-            <span className="gold-gradient-text font-black tracking-tight text-sm">MockMate AI</span>
-            <span className="text-gray-300">•</span>
+      <footer className="border-t border-[#EAE6DF] bg-white/80 backdrop-blur-xs py-1.5 sm:py-3 text-center text-[9px] sm:text-xs text-gray-500">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 flex flex-col sm:flex-row items-center justify-between gap-0.5 sm:gap-2">
+          <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 font-semibold text-gray-700">
+            <span className="gold-gradient-text font-black tracking-tight text-[10px] sm:text-sm">MockMate AI</span>
+            <span className="text-gray-300 hidden sm:inline">•</span>
             <span className="text-gray-500 font-normal">Next-Gen Autonomous Voice Interviewer</span>
           </div>
-          <div className="flex items-center gap-3 text-gray-400 text-[11px]">
+          <div className="flex flex-wrap justify-center items-center gap-1.5 sm:gap-3 text-gray-400 text-[8.5px] sm:text-[11px]">
             <span>Groq LLaMA 3.3 70B & Gemini 2.0</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span className="text-emerald-700 font-medium">Supabase Cloud Sync</span>
           </div>
         </div>
