@@ -553,12 +553,12 @@ export default function InterviewScreen({
           </div>
 
           {/* Bottom Integrated Voice Control Toolbar */}
-          <div className="p-3.5 bg-white rounded-3xl border border-[#EAE6DF] shadow-md flex items-center justify-between gap-2">
+          <div className="p-3.5 bg-white rounded-3xl border border-[#EAE6DF] shadow-md flex flex-wrap items-center justify-center 2xl:justify-between gap-3">
             {/* Left Controls: Pause, Skip */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center justify-center gap-1.5 flex-1 min-w-[200px]">
               <button
                 onClick={handleTogglePause}
-                className={`px-3 py-2 rounded-xl border transition-all flex items-center gap-1 text-xs font-bold cursor-pointer ${
+                className={`px-3 py-2 rounded-xl border transition-all flex items-center justify-center gap-1 text-xs font-bold cursor-pointer w-full sm:w-auto ${
                   isPaused
                     ? 'bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100'
                     : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
@@ -572,7 +572,7 @@ export default function InterviewScreen({
               <button
                 onClick={handleSkipQuestion}
                 disabled={interviewerStatus === 'thinking'}
-                className="px-2.5 py-2 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-40 cursor-pointer text-xs font-semibold flex items-center gap-1"
+                className="px-3 py-2 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-40 cursor-pointer text-xs font-semibold flex items-center justify-center gap-1 flex-1 sm:flex-none"
                 title="Skip Question"
               >
                 <SkipForward className="w-3.5 h-3.5" />
@@ -582,7 +582,7 @@ export default function InterviewScreen({
               <button
                 onClick={handlePreviousQuestion}
                 disabled={interviewerStatus === 'thinking' || currentQuestionIndex === 0}
-                className="px-2.5 py-2 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-40 cursor-pointer text-xs font-semibold flex items-center gap-1"
+                className="px-3 py-2 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-40 cursor-pointer text-xs font-semibold flex items-center justify-center gap-1 flex-1 sm:flex-none"
                 title="Previous Question"
               >
                 <SkipBack className="w-3.5 h-3.5" />
@@ -591,11 +591,11 @@ export default function InterviewScreen({
             </div>
 
             {/* Center: Explicit Mic Toggle & Submit Buttons */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2 flex-wrap sm:flex-nowrap w-full sm:w-auto flex-1 min-w-[250px]">
               <button
                 onClick={handleToggleMic}
                 disabled={interviewerStatus === 'thinking' || isPaused}
-                className={`px-4 sm:px-5 py-2.5 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer shadow-xs ${
+                className={`px-4 py-2.5 w-full sm:w-auto rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs flex-1 ${
                   isMicListening
                     ? 'bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 animate-pulse'
                     : interviewerStatus === 'speaking'
@@ -607,18 +607,18 @@ export default function InterviewScreen({
                 {isMicListening ? (
                   <>
                     <span className="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
-                    <Mic className="w-4 h-4 text-emerald-700" />
-                    <span>Mic Live • Tap to Mute</span>
+                    <Mic className="w-4 h-4 text-emerald-700 shrink-0" />
+                    <span className="truncate">Mic Live</span>
                   </>
                 ) : interviewerStatus === 'speaking' ? (
                   <>
-                    <Mic className="w-4 h-4 text-amber-700" />
-                    <span>Interrupt & Speak</span>
+                    <Mic className="w-4 h-4 text-amber-700 shrink-0" />
+                    <span className="truncate">Interrupt</span>
                   </>
                 ) : (
                   <>
-                    <MicOff className="w-4 h-4 text-gray-500" />
-                    <span>Mic Off • Tap to Speak</span>
+                    <MicOff className="w-4 h-4 text-gray-500 shrink-0" />
+                    <span className="truncate">Mic Off</span>
                   </>
                 )}
               </button>
@@ -626,22 +626,22 @@ export default function InterviewScreen({
               <button
                 onClick={handleSubmitAnswer}
                 disabled={interviewerStatus === 'thinking' || (!candidateAnswerText && !interimSpeech)}
-                className={`px-5 py-2.5 rounded-2xl text-xs font-bold text-white flex items-center gap-1.5 transition-all cursor-pointer shadow-md ${
+                className={`px-5 py-2.5 w-full sm:w-auto rounded-2xl text-xs font-bold text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-md flex-1 ${
                   candidateAnswerText || interimSpeech
                     ? 'bg-emerald-600 hover:bg-emerald-700 hover:shadow-lg'
                     : 'bg-gray-300 cursor-not-allowed opacity-60'
                 }`}
               >
-                <CornerDownLeft className="w-4 h-4" />
-                <span>Submit Answer</span>
+                <CornerDownLeft className="w-4 h-4 shrink-0" />
+                <span className="truncate">Submit</span>
               </button>
             </div>
 
             {/* Right: Transcript Drawer & End */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center justify-center gap-1.5 flex-1 min-w-[120px]">
               <button
                 onClick={() => setIsTranscriptOpen((prev) => !prev)}
-                className="p-2.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer"
+                className="p-2.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer flex-1 sm:flex-none flex justify-center"
                 title="Toggle Transcript"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
@@ -649,7 +649,7 @@ export default function InterviewScreen({
 
               <button
                 onClick={() => setShowEndModal(true)}
-                className="px-3 py-2 bg-red-50 text-red-700 border border-red-200 rounded-xl hover:bg-red-100 transition-colors text-xs font-bold flex items-center gap-1 cursor-pointer"
+                className="px-3 py-2 bg-red-50 text-red-700 border border-red-200 rounded-xl hover:bg-red-100 transition-colors text-xs font-bold flex items-center justify-center gap-1 cursor-pointer flex-1 sm:flex-none"
                 title="End Interview"
               >
                 <Square className="w-3 h-3 fill-red-600" />

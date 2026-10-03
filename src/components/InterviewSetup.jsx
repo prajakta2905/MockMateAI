@@ -66,8 +66,8 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
 
       
       {/* Top Session Breadcrumb (Stagger 1) */}
-      <div className="animate-in slide-in-from-top-4 fade-in duration-700 ease-out fill-mode-both flex items-center justify-between px-6 py-4 bg-white/60 backdrop-blur-xl rounded-[2rem] border border-white/80 shadow-xl shadow-gray-200/20 hover:shadow-2xl hover:bg-white/80 transition-all duration-500">
-        <div className="flex items-center gap-3">
+      <div className="animate-in slide-in-from-top-4 fade-in duration-700 ease-out fill-mode-both flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 px-6 py-4 bg-white/60 backdrop-blur-xl rounded-[2rem] border border-white/80 shadow-xl shadow-gray-200/20 hover:shadow-2xl hover:bg-white/80 transition-all duration-500">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FCF9EE] to-white border border-[#EEDD9E]/50 flex items-center justify-center text-[#A87D1B] font-bold shadow-sm relative overflow-hidden group">
             <div className="absolute inset-0 bg-[#D4AF37]/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             <UserCheck className="w-5 h-5 relative z-10" />
@@ -103,7 +103,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
               1. Interview Type
               <div className="h-px bg-[#EEDD9E]/50 flex-grow ml-2"></div>
             </label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 { id: 'mixed', title: 'Mixed', subtitle: 'Tech + Behav', icon: Shuffle },
                 { id: 'technical', title: 'Technical', subtitle: 'Arch & Stack', icon: Code2 },
@@ -185,7 +185,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
               3. Interviewer Persona
               <div className="h-px bg-[#EEDD9E]/50 flex-grow ml-2"></div>
             </label>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {personas.map((p) => {
                 const isSelected = interviewerPersona === p.id;
                 return (
@@ -216,7 +216,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
               4. Interaction Mode
               <div className="h-px bg-[#EEDD9E]/50 flex-grow ml-2"></div>
             </label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 { id: 'voice-to-voice', title: 'Voice ↔ Voice', desc: 'Main Demo' },
                 { id: 'voice-to-text', title: 'Voice → Text', desc: 'Transcript' },
@@ -248,7 +248,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
       </div>
 
       {/* Single Screen Action Bar (Stagger 4) */}
-      <div className="animate-in slide-in-from-bottom-4 fade-in duration-700 delay-[450ms] ease-out fill-mode-both flex items-center justify-between pt-8 px-2 relative z-10">
+      <div className="animate-in slide-in-from-bottom-4 fade-in duration-700 delay-[450ms] ease-out fill-mode-both flex flex-col-reverse sm:flex-row items-center justify-between gap-6 sm:gap-0 pt-8 px-2 relative z-10">
         <button
           onClick={onBack}
           className="group text-sm font-bold text-gray-400 hover:text-gray-800 transition-colors cursor-pointer flex items-center gap-2"

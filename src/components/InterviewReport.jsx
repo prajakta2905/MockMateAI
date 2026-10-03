@@ -199,7 +199,7 @@ ${executiveSummary}`;
             </div>
 
             {/* Quick Metrics Ribbon */}
-            <div className="grid grid-cols-3 gap-2 text-center relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center relative z-10">
               <div className="p-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)] transition-transform hover:-translate-y-0.5 duration-300">
                 <span className="text-[9px] uppercase font-bold text-gray-400 block mb-1 tracking-wider">Questions</span>
                 <p className="font-black text-gray-900 text-lg leading-none">{stats?.totalQuestions || 8}</p>

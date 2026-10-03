@@ -166,16 +166,7 @@ export default function Navbar({ onReset, currentStep, currentUser: propUser, on
               </div>
             )}
 
-            {/* Start New Round Button */}
-            {currentStep !== 'home' && (
-              <button
-                onClick={onReset}
-                className="px-3 py-1.5 text-xs font-bold text-gray-700 bg-white border border-[#EAE6DF] hover:border-[#D4AF37] hover:text-[#855E15] rounded-xl transition-all shadow-2xs flex items-center gap-1.5 cursor-pointer"
-              >
-                <RotateCcw className="w-3 h-3 text-[#A87D1B]" />
-                <span className="hidden md:inline">Start New Round</span>
-              </button>
-            )}
+
           </div>
         </div>
       </header>

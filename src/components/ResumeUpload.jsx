@@ -93,7 +93,7 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
       {/* Tabs Switcher */}
       {!parsedData && (
         <div className="flex justify-center mb-6">
-          <div className="bg-white p-1.5 rounded-2xl border border-[#EAE6DF] inline-flex shadow-sm">
+          <div className="bg-white p-1.5 rounded-2xl border border-[#EAE6DF] flex flex-col sm:flex-row inline-flex shadow-sm gap-1 sm:gap-0">
             <button
               onClick={() => setActiveTab('upload')}
               className={`px-6 py-2.5 text-sm font-bold rounded-xl transition-all ${

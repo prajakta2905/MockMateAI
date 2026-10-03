@@ -217,7 +217,7 @@ export default function HistoryModal({ isOpen, onClose, onOpenAuth }) {
               {activeTab === 'analytics' && analyticsData && (
                 <div className="space-y-6 pb-2 animate-in fade-in slide-in-from-right-4 duration-300">
                   {/* Top Stats Cards */}
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
                       <div className="flex items-center gap-2 text-gray-500 mb-2">
                         <Target className="w-4 h-4 text-blue-500" />
