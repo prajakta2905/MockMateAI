@@ -75,7 +75,7 @@ export default function ResumeUpload({ onResumeAnalyzed }) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-4 animate-in fade-in duration-300">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 space-y-4 animate-in fade-in duration-300 pb-10">
       {/* Premium Header */}
       <div className="text-center space-y-3 mb-8">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-[#FCF9EE] text-[#855E15] border border-[#EEDD9E] shadow-sm">
