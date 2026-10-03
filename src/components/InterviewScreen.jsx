@@ -366,18 +366,18 @@ export default function InterviewScreen({
   return (
     <div className="max-w-7xl mx-auto flex flex-col gap-3 h-[calc(100dvh-5.5rem)] animate-in fade-in duration-300 pb-2">
       {/* Top Compact Navigation Session Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 px-2 py-1.5 sm:px-3 sm:py-2 lg:px-5 lg:py-3 bg-white rounded-xl lg:rounded-2xl border border-[#EAE6DF] shadow-xs shrink-0">
+      <div className="flex flex-wrap items-center justify-between gap-1.5 px-2 py-1 bg-white rounded-xl lg:rounded-2xl border border-[#EAE6DF] shadow-xs shrink-0">
         {/* Left: Candidate Info & Category */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-[#FCF9EE] border border-[#EEDD9E] flex items-center justify-center text-[#A87D1B] font-black text-[10px] sm:text-xs">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg bg-[#FCF9EE] border border-[#EEDD9E] flex items-center justify-center text-[#A87D1B] font-black text-[10px]">
             Q{currentQuestionIndex + 1}
           </div>
           <div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="text-[10px] sm:text-xs font-bold text-gray-900 truncate max-w-[130px] sm:max-w-[200px]">{candidateName}</span>
-              <span className="text-[8px] sm:text-[10px] text-gray-400 hidden sm:inline">•</span>
-              <span className="text-[10px] sm:text-xs text-gray-600 font-medium truncate max-w-[100px] sm:max-w-none hidden sm:inline">{resume.targetRole}</span>
-              <span className="text-[8px] sm:text-[10px] bg-[#FCF9EE] text-[#855E15] border border-[#EEDD9E] px-1.5 py-0.5 rounded-md font-semibold hidden sm:inline">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] font-bold text-gray-900 truncate max-w-[120px] sm:max-w-[180px]">{candidateName}</span>
+              <span className="text-[8px] text-gray-400 hidden sm:inline">•</span>
+              <span className="text-[9px] sm:text-[10px] text-gray-600 font-medium truncate max-w-[80px] sm:max-w-none hidden sm:inline">{resume.targetRole}</span>
+              <span className="text-[8px] bg-[#FCF9EE] text-[#855E15] border border-[#EEDD9E] px-1 py-0.5 rounded-md font-semibold hidden sm:inline">
                 {setup.type.toUpperCase()}
               </span>
             </div>
@@ -402,9 +402,9 @@ export default function InterviewScreen({
       </div>
 
       {/* Main Horizontal 2-Column Arena */}
-      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-3 items-stretch flex-1 min-h-0">
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-2 lg:gap-3 items-stretch flex-1 min-h-0">
         {/* Left Column (5 Cols): AI Voice Orb & Persona Pod */}
-        <div className="lg:col-span-5 luxury-card p-2 lg:p-5 rounded-2xl lg:rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm h-[110px] lg:h-full shrink-0 lg:shrink">
+        <div className="lg:col-span-5 luxury-card p-2 lg:p-5 rounded-2xl lg:rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm h-[130px] lg:h-full shrink-0 lg:shrink">
           {/* Subtle Top Accent */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] via-[#E2B857] to-[#A87D1B] rounded-t-2xl lg:rounded-t-3xl overflow-hidden"></div>
 
@@ -426,7 +426,7 @@ export default function InterviewScreen({
           </div>
 
           {/* Golden Orb Centerpiece */}
-          <div className="flex-1 flex items-center justify-center -mt-12 -mb-12 lg:mt-0 lg:mb-0 transform scale-[0.45] lg:scale-100 origin-center pointer-events-none">
+          <div className="flex-1 flex items-center justify-center pointer-events-none overflow-hidden my-1">
             <AudioVisualizer
               status={interviewerStatus}
               volume={micVolume}

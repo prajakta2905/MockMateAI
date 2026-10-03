@@ -217,7 +217,7 @@ class SpeechService {
             if (this.shouldBeListening && !this.isSpeaking && !this.permissionDenied) {
               this._restartRecognition();
             }
-          }, 150);
+          }, 800);
         } else {
           if (this.onListeningChangeCallback) {
             this.onListeningChangeCallback(false);
@@ -254,7 +254,7 @@ class SpeechService {
       // Retry after small delay
       if (this.shouldBeListening && !this.isSpeaking && !this.permissionDenied) {
         clearTimeout(this.restartTimeout);
-        this.restartTimeout = setTimeout(() => this._restartRecognition(), 400);
+        this.restartTimeout = setTimeout(() => this._restartRecognition(), 1000);
       }
     }
   }
@@ -359,6 +359,8 @@ class SpeechService {
       if (finished) return;
       finished = true;
       clearTimeout(this.speechWatchdog);
+      clearInterval(this.speechHeartbeat);
+      this.speechHeartbeat = null;
       this.activeUtterance = null;
       if (typeof window !== 'undefined') window.__mockmateUtterance = null;
 
@@ -374,6 +376,16 @@ class SpeechService {
       if (currentChunkIndex >= chunks.length) {
         finishSpeech();
         return;
+      }
+
+      if (!this.speechHeartbeat) {
+        // Chromium TTS bug workaround: pause/resume every 10 seconds keeps it alive
+        this.speechHeartbeat = setInterval(() => {
+          if (this.synthesis && this.synthesis.speaking && !this.synthesis.paused) {
+            this.synthesis.pause();
+            this.synthesis.resume();
+          }
+        }, 10000);
       }
 
       const utterance = new SpeechSynthesisUtterance(chunks[currentChunkIndex]);
@@ -433,6 +445,8 @@ class SpeechService {
    */
   stopSpeaking() {
     clearTimeout(this.speechWatchdog);
+    clearInterval(this.speechHeartbeat);
+    this.speechHeartbeat = null;
     if (this.synthesis) {
       try {
         this.synthesis.cancel();
