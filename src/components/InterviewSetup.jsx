@@ -103,7 +103,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
               1. Interview Type
               <div className="h-px bg-[#EEDD9E]/50 flex-grow ml-2"></div>
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {[
                 { id: 'mixed', title: 'Mixed', subtitle: 'Tech + Behav', icon: Shuffle },
                 { id: 'technical', title: 'Technical', subtitle: 'Arch & Stack', icon: Code2 },
@@ -116,7 +116,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                     key={item.id}
                     type="button"
                     onClick={() => setInterviewType(item.id)}
-                    className={`group relative p-4 rounded-2xl border text-left transition-all duration-500 cursor-pointer overflow-hidden ${
+                    className={`group relative p-2 sm:p-4 rounded-2xl border text-center sm:text-left transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-center min-h-[70px] ${
                       isSelected
                         ? 'bg-gradient-to-br from-[#FCF9EE] to-white border-[#D4AF37] shadow-[0_8px_25px_-5px_rgba(212,175,55,0.4)] -translate-y-1 ring-2 ring-[#D4AF37]/40 scale-[1.02]'
                         : 'bg-white/40 border-gray-100 hover:border-[#D4AF37]/60 hover:bg-white hover:shadow-[0_8px_20px_-5px_rgba(212,175,55,0.25)] hover:-translate-y-1 hover:scale-[1.02]'
@@ -125,11 +125,11 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                     {/* Selected Shine Effect */}
                     {isSelected && <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>}
                     
-                    <div className="relative z-10 flex flex-col h-full justify-between">
-                      <Icon className={`w-6 h-6 mb-3 transition-all duration-300 ${isSelected ? 'text-[#D4AF37] scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]' : 'text-gray-400 group-hover:text-[#D4AF37]/80 group-hover:scale-110'}`} />
+                    <div className="relative z-10 flex flex-col h-full justify-center items-center sm:items-start">
+                      <Icon className={`w-5 h-5 sm:w-6 sm:h-6 mb-1 sm:mb-3 transition-all duration-300 ${isSelected ? 'text-[#D4AF37] scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]' : 'text-gray-400 group-hover:text-[#D4AF37]/80 group-hover:scale-110'}`} />
                       <div>
-                        <p className={`font-bold text-[14px] transition-colors ${isSelected ? 'text-gray-900' : 'text-gray-600 group-hover:text-gray-900'}`}>{item.title}</p>
-                        <p className={`text-[10px] mt-0.5 truncate transition-colors ${isSelected ? 'text-[#A87D1B] font-semibold' : 'text-gray-400 group-hover:text-[#A87D1B]/80'}`}>{item.subtitle}</p>
+                        <p className={`font-bold text-[11px] sm:text-[14px] transition-colors leading-tight ${isSelected ? 'text-gray-900' : 'text-gray-600 group-hover:text-gray-900'}`}>{item.title}</p>
+                        <p className={`text-[9px] sm:text-[10px] mt-0.5 truncate transition-colors ${isSelected ? 'text-[#A87D1B] font-semibold' : 'text-gray-400 group-hover:text-[#A87D1B]/80'}`}>{item.subtitle}</p>
                       </div>
                     </div>
                   </button>
@@ -144,7 +144,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
               2. Target Duration
               <div className="h-px bg-[#EEDD9E]/50 flex-grow ml-2"></div>
             </label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {[
                 { mins: 15, label: '15 Min', desc: 'Screening' },
                 { mins: 30, label: '30 Min', desc: 'Standard' },
@@ -156,7 +156,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                     key={item.mins}
                     type="button"
                     onClick={() => setDuration(item.mins)}
-                    className={`group relative p-3 rounded-2xl text-center border transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-center min-h-[60px] sm:min-h-[80px] ${
+                    className={`group relative p-2 sm:p-3 rounded-2xl text-center border transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-center min-h-[60px] sm:min-h-[80px] ${
                       isSelected
                         ? 'bg-gradient-to-br from-[#FCF9EE] to-white border-[#D4AF37] shadow-[0_8px_25px_-5px_rgba(212,175,55,0.4)] -translate-y-1 ring-2 ring-[#D4AF37]/40 scale-[1.02]'
                         : 'bg-white/40 border-gray-100 hover:border-[#D4AF37]/60 hover:bg-white hover:shadow-[0_8px_20px_-5px_rgba(212,175,55,0.25)] hover:-translate-y-1 hover:scale-[1.02]'
@@ -164,8 +164,8 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                   >
                     {isSelected && <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>}
                     <div className="relative z-10">
-                      <p className={`text-[14px] font-extrabold transition-colors duration-300 ${isSelected ? 'text-gray-900 drop-shadow-sm' : 'text-gray-500 group-hover:text-gray-800'}`}>{item.label}</p>
-                      <p className={`text-[10px] mt-1 transition-colors duration-300 ${isSelected ? 'text-[#A87D1B] font-bold' : 'text-gray-400 group-hover:text-[#A87D1B]/80'}`}>{item.desc}</p>
+                      <p className={`text-[12px] sm:text-[14px] font-extrabold transition-colors duration-300 ${isSelected ? 'text-gray-900 drop-shadow-sm' : 'text-gray-500 group-hover:text-gray-800'}`}>{item.label}</p>
+                      <p className={`text-[9px] sm:text-[10px] mt-0.5 sm:mt-1 transition-colors duration-300 leading-tight ${isSelected ? 'text-[#A87D1B] font-bold' : 'text-gray-400 group-hover:text-[#A87D1B]/80'}`}>{item.desc}</p>
                     </div>
                   </button>
                 );
@@ -185,7 +185,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
               3. Interviewer Persona
               <div className="h-px bg-[#EEDD9E]/50 flex-grow ml-2"></div>
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               {personas.map((p) => {
                 const isSelected = interviewerPersona === p.id;
                 return (
@@ -193,7 +193,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                     key={p.id}
                     type="button"
                     onClick={() => setInterviewerPersona(p.id)}
-                    className={`group relative p-3 sm:p-4 rounded-2xl border text-left transition-all duration-500 cursor-pointer overflow-hidden min-h-[70px] sm:min-h-[90px] flex flex-col justify-center ${
+                    className={`group relative p-2 sm:p-4 rounded-2xl border text-center sm:text-left transition-all duration-500 cursor-pointer overflow-hidden min-h-[60px] sm:min-h-[90px] flex flex-col justify-center ${
                       isSelected
                         ? 'bg-gradient-to-br from-[#FCF9EE] to-white border-[#D4AF37] shadow-[0_8px_25px_-5px_rgba(212,175,55,0.4)] -translate-y-1 ring-2 ring-[#D4AF37]/40 scale-[1.02]'
                         : 'bg-white/40 border-gray-100 hover:border-[#D4AF37]/60 hover:bg-white hover:shadow-[0_8px_20px_-5px_rgba(212,175,55,0.25)] hover:-translate-y-1 hover:scale-[1.02]'
@@ -201,8 +201,8 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                   >
                     {isSelected && <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>}
                     <div className="relative z-10">
-                      <p className={`font-extrabold text-[14px] transition-colors duration-300 ${isSelected ? 'text-gray-900' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.name}</p>
-                      <p className={`text-[11px] mt-1 font-semibold truncate transition-colors duration-300 ${isSelected ? 'text-[#D4AF37]' : 'text-gray-400 group-hover:text-[#D4AF37]/80'}`}>{p.title}</p>
+                      <p className={`font-extrabold text-[12px] sm:text-[14px] transition-colors duration-300 leading-tight ${isSelected ? 'text-gray-900' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.name}</p>
+                      <p className={`text-[9px] sm:text-[11px] mt-0.5 sm:mt-1 font-semibold truncate transition-colors duration-300 ${isSelected ? 'text-[#D4AF37]' : 'text-gray-400 group-hover:text-[#D4AF37]/80'}`}>{p.title}</p>
                     </div>
                   </button>
                 );
@@ -216,7 +216,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
               4. Interaction Mode
               <div className="h-px bg-[#EEDD9E]/50 flex-grow ml-2"></div>
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {[
                 { id: 'voice-to-voice', title: 'Voice ↔ Voice', desc: 'Main Demo' },
                 { id: 'voice-to-text', title: 'Voice → Text', desc: 'Transcript' },
@@ -228,7 +228,7 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                     key={mode.id}
                     type="button"
                     onClick={() => setVoiceMode(mode.id)}
-                    className={`group relative p-3 rounded-2xl text-left border transition-all duration-500 cursor-pointer overflow-hidden min-h-[60px] sm:min-h-[80px] flex flex-col justify-center ${
+                    className={`group relative p-2 sm:p-3 rounded-2xl text-center sm:text-left border transition-all duration-500 cursor-pointer overflow-hidden min-h-[60px] sm:min-h-[80px] flex flex-col justify-center ${
                       isSelected
                         ? 'bg-gradient-to-br from-[#FCF9EE] to-white border-[#D4AF37] shadow-[0_8px_25px_-5px_rgba(212,175,55,0.4)] -translate-y-1 ring-2 ring-[#D4AF37]/40 scale-[1.02]'
                         : 'bg-white/40 border-gray-100 hover:border-[#D4AF37]/60 hover:bg-white hover:shadow-[0_8px_20px_-5px_rgba(212,175,55,0.25)] hover:-translate-y-1 hover:scale-[1.02]'
@@ -236,8 +236,8 @@ export default function InterviewSetup({ resume, onSetupComplete, onBack }) {
                   >
                     {isSelected && <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>}
                     <div className="relative z-10">
-                      <p className={`font-bold text-[12px] transition-colors duration-300 ${isSelected ? 'text-gray-900' : 'text-gray-500 group-hover:text-gray-800'}`}>{mode.title}</p>
-                      <p className={`text-[10px] mt-1 transition-colors duration-300 font-medium ${isSelected ? 'text-[#A87D1B]' : 'text-gray-400 group-hover:text-[#A87D1B]/80'}`}>{mode.desc}</p>
+                      <p className={`font-bold text-[11px] sm:text-[12px] transition-colors duration-300 leading-tight ${isSelected ? 'text-gray-900' : 'text-gray-500 group-hover:text-gray-800'}`}>{mode.title}</p>
+                      <p className={`text-[9px] sm:text-[10px] mt-0.5 sm:mt-1 transition-colors duration-300 font-medium ${isSelected ? 'text-[#A87D1B]' : 'text-gray-400 group-hover:text-[#A87D1B]/80'}`}>{mode.desc}</p>
                     </div>
                   </button>
                 );
