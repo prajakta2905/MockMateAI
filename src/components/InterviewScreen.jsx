@@ -366,7 +366,7 @@ export default function InterviewScreen({
   return (
     <div className="max-w-7xl mx-auto flex flex-col gap-3 h-[calc(100dvh-5.5rem)] animate-in fade-in duration-300 pb-2">
       {/* Top Compact Navigation Session Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 bg-white rounded-2xl border border-[#EAE6DF] shadow-xs">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 lg:px-5 lg:py-3 bg-white rounded-2xl border border-[#EAE6DF] shadow-xs shrink-0">
         {/* Left: Candidate Info & Category */}
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl bg-[#FCF9EE] border border-[#EEDD9E] flex items-center justify-center text-[#A87D1B] font-black text-xs">
@@ -404,7 +404,7 @@ export default function InterviewScreen({
       {/* Main Horizontal 2-Column Arena */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch flex-1 min-h-0 overflow-hidden">
         {/* Left Column (5 Cols): AI Voice Orb & Persona Pod */}
-        <div className="lg:col-span-5 luxury-card p-4 lg:p-5 rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative overflow-hidden bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm h-full min-h-[220px] lg:min-h-0 shrink-0 lg:shrink">
+        <div className="lg:col-span-5 luxury-card p-2 lg:p-5 rounded-2xl lg:rounded-3xl border border-[#EEDD9E]/70 flex flex-col items-center justify-between relative overflow-hidden bg-gradient-to-b from-white via-[#FCF9EE]/30 to-white shadow-sm h-[130px] lg:h-full shrink-0 lg:shrink">
           {/* Subtle Top Accent */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] via-[#E2B857] to-[#A87D1B]"></div>
 
@@ -426,7 +426,7 @@ export default function InterviewScreen({
           </div>
 
           {/* Golden Orb Centerpiece */}
-          <div className="my-auto py-2">
+          <div className="my-auto py-1 lg:py-2 transform scale-75 lg:scale-100 origin-center">
             <AudioVisualizer
               status={interviewerStatus}
               volume={micVolume}
@@ -435,7 +435,7 @@ export default function InterviewScreen({
           </div>
 
           {/* Persona Card Footer Info */}
-          <div className="w-full p-3 bg-white/90 rounded-2xl border border-[#EAE6DF] text-center space-y-1">
+          <div className="hidden lg:block w-full p-3 bg-white/90 rounded-2xl border border-[#EAE6DF] text-center space-y-1">
             <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-gray-900">
               <span>{setup.persona?.name || 'Alexander'}</span>
               <span className="text-gray-300">•</span>
@@ -452,7 +452,7 @@ export default function InterviewScreen({
         {/* Right Column (7 Cols): Question Card, Live Answer & Control Toolbar */}
         <div className="lg:col-span-7 flex flex-col gap-3 h-full min-h-0 overflow-hidden">
           {/* Current Question Card */}
-          <div className="luxury-card p-3 lg:p-4 rounded-3xl border border-[#EAE6DF] space-y-1.5 bg-white shadow-xs shrink-0 max-h-[35%] overflow-y-auto">
+          <div className="luxury-card p-2.5 lg:p-4 rounded-2xl lg:rounded-3xl border border-[#EAE6DF] space-y-1 bg-white shadow-xs shrink-0 max-h-[30%] overflow-y-auto">
             <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase font-black tracking-widest text-[#A87D1B] bg-[#FCF9EE] px-2.5 py-1 rounded-md border border-[#EEDD9E]">
                 {currentQuestion?.category || 'Question'}
@@ -472,7 +472,7 @@ export default function InterviewScreen({
           </div>
 
           {/* Live Spoken Answer Display & Text Area */}
-          <div className="luxury-card p-3 lg:p-4 rounded-3xl border border-[#EAE6DF] flex-1 flex flex-col bg-white shadow-xs space-y-2 min-h-0">
+          <div className="luxury-card p-2.5 lg:p-4 rounded-2xl lg:rounded-3xl border border-[#EAE6DF] flex-1 flex flex-col bg-white shadow-xs space-y-1 lg:space-y-2 min-h-[100px] lg:min-h-0">
             <div className="flex items-center justify-between text-xs font-bold text-gray-600">
               <span className="flex items-center gap-1.5 text-emerald-700">
                 <Mic className="w-3.5 h-3.5" /> Your Spoken or Typed Answer:
@@ -553,12 +553,12 @@ export default function InterviewScreen({
           </div>
 
           {/* Bottom Integrated Voice Control Toolbar */}
-          <div className="p-2 lg:p-3 bg-white rounded-3xl border border-[#EAE6DF] shadow-md flex flex-wrap items-center justify-center 2xl:justify-between gap-2 shrink-0">
+          <div className="p-1.5 lg:p-3 bg-white rounded-2xl lg:rounded-3xl border border-[#EAE6DF] shadow-md flex overflow-x-auto lg:overflow-visible lg:flex-wrap items-center gap-2 shrink-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x">
             {/* Left Controls: Pause, Skip */}
-            <div className="flex items-center justify-center gap-1.5 flex-1 min-w-[200px]">
+            <div className="flex items-center gap-1.5 shrink-0 snap-center">
               <button
                 onClick={handleTogglePause}
-                className={`px-3 py-2 rounded-xl border transition-all flex items-center justify-center gap-1 text-xs font-bold cursor-pointer w-full sm:w-auto ${
+                className={`px-3 py-2 rounded-xl border transition-all flex items-center justify-center gap-1 text-[11px] lg:text-xs font-bold cursor-pointer ${
                   isPaused
                     ? 'bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100'
                     : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
@@ -572,30 +572,30 @@ export default function InterviewScreen({
               <button
                 onClick={handleSkipQuestion}
                 disabled={interviewerStatus === 'thinking'}
-                className="px-3 py-2 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-40 cursor-pointer text-xs font-semibold flex items-center justify-center gap-1 flex-1 sm:flex-none"
+                className="px-3 py-2 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-40 cursor-pointer text-[11px] lg:text-xs font-semibold flex items-center justify-center gap-1"
                 title="Skip Question"
               >
                 <SkipForward className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Skip</span>
+                <span className="hidden lg:inline">Skip</span>
               </button>
 
               <button
                 onClick={handlePreviousQuestion}
                 disabled={interviewerStatus === 'thinking' || currentQuestionIndex === 0}
-                className="px-3 py-2 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-40 cursor-pointer text-xs font-semibold flex items-center justify-center gap-1 flex-1 sm:flex-none"
+                className="px-3 py-2 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-40 cursor-pointer text-[11px] lg:text-xs font-semibold flex items-center justify-center gap-1"
                 title="Previous Question"
               >
                 <SkipBack className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Prev</span>
+                <span className="hidden lg:inline">Prev</span>
               </button>
             </div>
 
             {/* Center: Explicit Mic Toggle & Submit Buttons */}
-            <div className="flex items-center justify-center gap-2 flex-wrap sm:flex-nowrap w-full sm:w-auto flex-1 min-w-[250px]">
+            <div className="flex items-center gap-1.5 shrink-0 snap-center">
               <button
                 onClick={handleToggleMic}
                 disabled={interviewerStatus === 'thinking' || isPaused}
-                className={`px-4 py-2.5 w-full sm:w-auto rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs flex-1 ${
+                className={`px-3 lg:px-4 py-2 lg:py-2.5 rounded-xl lg:rounded-2xl text-[11px] lg:text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs ${
                   isMicListening
                     ? 'bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-emerald-200 animate-pulse'
                     : interviewerStatus === 'speaking'
@@ -607,18 +607,18 @@ export default function InterviewScreen({
                 {isMicListening ? (
                   <>
                     <span className="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
-                    <Mic className="w-4 h-4 text-emerald-700 shrink-0" />
-                    <span className="truncate">Mic Live</span>
+                    <Mic className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                    <span>Mic Live</span>
                   </>
                 ) : interviewerStatus === 'speaking' ? (
                   <>
-                    <Mic className="w-4 h-4 text-amber-700 shrink-0" />
-                    <span className="truncate">Interrupt</span>
+                    <Mic className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                    <span>Interrupt</span>
                   </>
                 ) : (
                   <>
-                    <MicOff className="w-4 h-4 text-gray-500 shrink-0" />
-                    <span className="truncate">Mic Off</span>
+                    <MicOff className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+                    <span>Mic Off</span>
                   </>
                 )}
               </button>
@@ -626,22 +626,22 @@ export default function InterviewScreen({
               <button
                 onClick={handleSubmitAnswer}
                 disabled={interviewerStatus === 'thinking' || (!candidateAnswerText && !interimSpeech)}
-                className={`px-5 py-2.5 w-full sm:w-auto rounded-2xl text-xs font-bold text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-md flex-1 ${
+                className={`px-3 lg:px-4 py-2 lg:py-2.5 rounded-xl lg:rounded-2xl text-[11px] lg:text-xs font-bold text-white flex items-center justify-center gap-1 transition-all cursor-pointer shadow-md ${
                   candidateAnswerText || interimSpeech
                     ? 'bg-emerald-600 hover:bg-emerald-700 hover:shadow-lg'
                     : 'bg-gray-300 cursor-not-allowed opacity-60'
                 }`}
               >
-                <CornerDownLeft className="w-4 h-4 shrink-0" />
-                <span className="truncate">Submit</span>
+                <CornerDownLeft className="w-3.5 h-3.5 shrink-0" />
+                <span>Submit</span>
               </button>
             </div>
 
             {/* Right: Transcript Drawer & End */}
-            <div className="flex items-center justify-center gap-1.5 flex-1 min-w-[120px]">
+            <div className="flex items-center gap-1.5 shrink-0 snap-center ml-auto">
               <button
                 onClick={() => setIsTranscriptOpen((prev) => !prev)}
-                className="p-2.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer flex-1 sm:flex-none flex justify-center"
+                className="p-2 lg:p-2.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer flex justify-center"
                 title="Toggle Transcript"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
@@ -649,11 +649,11 @@ export default function InterviewScreen({
 
               <button
                 onClick={() => setShowEndModal(true)}
-                className="px-3 py-2 bg-red-50 text-red-700 border border-red-200 rounded-xl hover:bg-red-100 transition-colors text-xs font-bold flex items-center justify-center gap-1 cursor-pointer flex-1 sm:flex-none"
+                className="px-3 py-2 bg-red-50 text-red-700 border border-red-200 rounded-xl hover:bg-red-100 transition-colors text-[11px] lg:text-xs font-bold flex items-center justify-center gap-1 cursor-pointer"
                 title="End Interview"
               >
                 <Square className="w-3 h-3 fill-red-600" />
-                <span className="hidden sm:inline">End</span>
+                <span className="hidden lg:inline">End</span>
               </button>
             </div>
           </div>
